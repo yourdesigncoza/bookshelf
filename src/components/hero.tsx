@@ -20,7 +20,7 @@ export function Hero() {
             </div>
             <div className="flex flex-col gap-3 min-[400px]:flex-row">
               <Button size="lg" className="gap-1" asChild>
-                <a href="https://docs.augmentcode.com/introduction">
+                <a href="http://augmentcode.com/jay">
                   Documentation <ArrowRight className="h-4 w-4" />
                 </a>
               </Button>

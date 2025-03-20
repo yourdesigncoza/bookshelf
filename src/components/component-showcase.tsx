@@ -49,20 +49,22 @@ export function ComponentShowcase() {
 
       <div className="container max-w-6xl mx-auto px-4">
         <Tabs defaultValue="inputs" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-6">
-            <TabsTrigger value="inputs" id="inputs">Inputs</TabsTrigger>
-            <TabsTrigger value="display" id="display">Display</TabsTrigger>
-            <TabsTrigger value="layout" id="layout">Layout</TabsTrigger>
-            <TabsTrigger value="navigation" id="navigation">Navigation</TabsTrigger>
-            <TabsTrigger value="feedback" id="feedback">Feedback</TabsTrigger>
-            <TabsTrigger value="data-display" id="data-display">Data Display</TabsTrigger>
-          </TabsList>
+          <div className="mb-4">
+            <TabsList className="bg-muted flex-wrap h-auto p-1">
+              <TabsTrigger value="inputs" id="inputs" className="flex-1 min-w-[120px] m-1">Inputs</TabsTrigger>
+              <TabsTrigger value="display" id="display" className="flex-1 min-w-[120px] m-1">Display</TabsTrigger>
+              <TabsTrigger value="layout" id="layout" className="flex-1 min-w-[120px] m-1">Layout</TabsTrigger>
+              <TabsTrigger value="navigation" id="navigation" className="flex-1 min-w-[120px] m-1">Navigation</TabsTrigger>
+              <TabsTrigger value="feedback" id="feedback" className="flex-1 min-w-[120px] m-1">Feedback</TabsTrigger>
+              <TabsTrigger value="data-display" id="data-display" className="flex-1 min-w-[120px] m-1">Data Display</TabsTrigger>
+            </TabsList>
+          </div>
 
         {/* Inputs Tab */}
         <TabsContent value="inputs" className="space-y-8">
           <h3 className="text-2xl font-bold">Input Components</h3>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {/* Button */}
             <Card>
               <CardHeader>
@@ -195,7 +197,7 @@ export function ComponentShowcase() {
         <TabsContent value="display" className="space-y-8">
           <h3 className="text-2xl font-bold">Display Components</h3>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {/* Avatar */}
             <Card>
               <CardHeader>
@@ -295,7 +297,7 @@ export function ComponentShowcase() {
         <TabsContent value="layout" className="space-y-8">
           <h3 className="text-2xl font-bold">Layout Components</h3>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {/* Accordion */}
             <Card>
               <CardHeader>
@@ -384,7 +386,7 @@ export function ComponentShowcase() {
         <TabsContent value="navigation" className="space-y-8">
           <h3 className="text-2xl font-bold">Navigation Components</h3>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {/* Dropdown Menu */}
             <Card>
               <CardHeader>
@@ -470,7 +472,7 @@ export function ComponentShowcase() {
         <TabsContent value="feedback" className="space-y-8">
           <h3 className="text-2xl font-bold">Feedback Components</h3>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {/* Alert */}
             <Card>
               <CardHeader>
@@ -583,7 +585,7 @@ export function ComponentShowcase() {
         <TabsContent value="data-display" className="space-y-8">
           <h3 className="text-2xl font-bold">Data Display Components</h3>
 
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-6 grid-cols-1 md:grid-cols-2">
             {/* Table */}
             <Card className="col-span-2 md:col-span-1">
               <CardHeader>

@@ -12,7 +12,7 @@
 
 A modern, elegant starter template for Next.js 15 projects with Shadcn UI components, optimized for use with Augment AI coding assistant. This template provides a solid foundation for building beautiful, responsive web applications with the power of AI assistance.
 
-- [Augment](https://augmentcode.com/) - AI coding assistant - Try it for free!
+- [Augment](http://augmentcode.com/jay) - AI coding assistant - Try it for free now!
 
 ## ✨ Features
 
@@ -115,4 +115,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - [Next.js](https://nextjs.org/) - The React Framework
 - [Shadcn UI](https://ui.shadcn.com/) - UI Components
 - [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
-- [Augment](https://augmentcode.com/) - AI coding assistant
+- [Augment](http://augmentcode.com/jay) - AI coding assistant

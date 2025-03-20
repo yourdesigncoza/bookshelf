@@ -15,6 +15,14 @@ import {
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 import React from "react";
+import { Menu } from "lucide-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetTitle,
+  SheetHeader,
+} from "@/components/ui/sheet";
 
 export function Header() {
   return (
@@ -31,50 +39,155 @@ export function Header() {
                 className="object-cover"
               />
             </div>
-            <span className="font-bold text-lg">
+            <span className="font-bold text-lg hidden sm:inline-block">
               Augment Next.js Starter
             </span>
           </Link>
-          <NavigationMenu>
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>Components</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-2">
-                    <ListItem href="#inputs" title="Inputs">
-                      Form controls and input components
-                    </ListItem>
-                    <ListItem href="#display" title="Display">
-                      Components for displaying content
-                    </ListItem>
-                    <ListItem href="#layout" title="Layout">
-                      Components for layout and structure
-                    </ListItem>
-                    <ListItem href="#navigation" title="Navigation">
-                      Components for navigation and menus
-                    </ListItem>
-                    <ListItem href="#feedback" title="Feedback">
-                      Components for user feedback
-                    </ListItem>
-                    <ListItem href="#data-display" title="Data Display">
-                      Components for displaying data
-                    </ListItem>
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link href="https://docs.augmentcode.com/introduction" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Documentation
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
+          {/* Desktop Navigation */}
+          <div className="hidden md:block">
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger>Components</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-2">
+                      <ListItem href="#inputs" title="Inputs">
+                        Form controls and input components
+                      </ListItem>
+                      <ListItem href="#display" title="Display">
+                        Components for displaying content
+                      </ListItem>
+                      <ListItem href="#layout" title="Layout">
+                        Components for layout and structure
+                      </ListItem>
+                      <ListItem href="#navigation" title="Navigation">
+                        Components for navigation and menus
+                      </ListItem>
+                      <ListItem href="#feedback" title="Feedback">
+                        Components for user feedback
+                      </ListItem>
+                      <ListItem href="#data-display" title="Data Display">
+                        Components for displaying data
+                      </ListItem>
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <Link href="http://augmentcode.com/jay" legacyBehavior passHref>
+                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                      Documentation
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+          </div>
         </div>
+
         <div className="flex items-center gap-4">
           <ThemeSwitcher />
-          <Button>Get Started</Button>
+          <div className="hidden sm:flex items-center gap-4">
+            <Link href="/login" className="text-sm font-medium hover:underline">
+              Login
+            </Link>
+            <Button asChild>
+              <Link href="/register">Get Started</Link>
+            </Button>
+          </div>
+
+          {/* Mobile Navigation */}
+          <div className="md:hidden">
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="outline" size="icon" className="md:hidden">
+                  <Menu className="h-5 w-5" />
+                  <span className="sr-only">Toggle menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[300px] sm:w-[380px] p-0 bg-background">
+                <SheetHeader className="sr-only">
+                  <SheetTitle>Navigation Menu</SheetTitle>
+                </SheetHeader>
+                <div className="flex flex-col h-full">
+                  <div className="p-6 bg-background border-b">
+                    <Link href="/" className="flex items-center space-x-3">
+                      <div className="relative w-10 h-10 overflow-hidden rounded-xl shadow-sm">
+                        <Image
+                          src="/logo.png"
+                          alt="Augment Logo"
+                          width={40}
+                          height={40}
+                          className="object-cover"
+                        />
+                      </div>
+                      <span className="font-bold text-xl">Starter Pack</span>
+                    </Link>
+                  </div>
+
+                  <div className="flex-1 px-6 py-8 overflow-auto bg-background">
+                    <div className="space-y-6">
+                      <div>
+                        <h4 className="text-xs font-semibold text-muted-foreground mb-4 pl-4">COMPONENTS</h4>
+                        <nav className="space-y-1">
+                          {[
+                            { href: "#inputs", label: "Inputs" },
+                            { href: "#display", label: "Display" },
+                            { href: "#layout", label: "Layout" },
+                            { href: "#navigation", label: "Navigation" },
+                            { href: "#feedback", label: "Feedback" },
+                            { href: "#data-display", label: "Data Display" }
+                          ].map((item) => (
+                            <Link
+                              key={item.href}
+                              href={item.href}
+                              className="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg transition-colors bg-white hover:bg-accent hover:text-accent-foreground"
+                            >
+                              {item.label}
+                            </Link>
+                          ))}
+                        </nav>
+                      </div>
+
+                      <div>
+                        <h4 className="text-xs font-semibold text-muted-foreground mb-4 pl-4">RESOURCES</h4>
+                        <nav className="space-y-1">
+                          <Link
+                            href="http://augmentcode.com/jay"
+                            className="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg transition-colors bg-white hover:bg-accent hover:text-accent-foreground"
+                          >
+                            Documentation
+                          </Link>
+                          <Link
+                            href="/login"
+                            className="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg transition-colors bg-white hover:bg-accent hover:text-accent-foreground"
+                          >
+                            Login
+                          </Link>
+                          <Link
+                            href="/register"
+                            className="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg transition-colors bg-white hover:bg-accent hover:text-accent-foreground"
+                          >
+                            Register
+                          </Link>
+                        </nav>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="p-6 bg-background border-t">
+                    <div className="flex flex-col gap-3">
+                      <Button asChild className="w-full" size="lg">
+                        <Link href="/register">Get Started</Link>
+                      </Button>
+                      <Button asChild variant="outline" className="w-full">
+                        <Link href="/login">Login</Link>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
       </div>
     </header>
