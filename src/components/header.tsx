@@ -14,7 +14,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
-import React from "react";
+import React, { useState } from "react";
 import { Menu } from "lucide-react";
 import {
   Sheet,
@@ -25,6 +25,9 @@ import {
 } from "@/components/ui/sheet";
 
 export function Header() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const closeSheet = () => setIsOpen(false);
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container max-w-6xl mx-auto flex h-16 items-center justify-between px-4">
@@ -97,7 +100,7 @@ export function Header() {
 
           {/* Mobile Navigation */}
           <div className="md:hidden">
-            <Sheet>
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
                 <Button variant="outline" size="icon" className="md:hidden">
                   <Menu className="h-5 w-5" />
@@ -140,7 +143,8 @@ export function Header() {
                             <Link
                               key={item.href}
                               href={item.href}
-                              className="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg transition-colors bg-white hover:bg-accent hover:text-accent-foreground"
+                              onClick={closeSheet}
+                              className="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg transition-colors bg-background border hover:bg-accent hover:text-accent-foreground"
                             >
                               {item.label}
                             </Link>
@@ -152,20 +156,23 @@ export function Header() {
                         <h4 className="text-xs font-semibold text-muted-foreground mb-4 pl-4">RESOURCES</h4>
                         <nav className="space-y-1">
                           <Link
-                            href="http://augmentcode.com/jay"
-                            className="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg transition-colors bg-white hover:bg-accent hover:text-accent-foreground"
+                            href="https://www.augmentcode.com/jay"
+                            onClick={closeSheet}
+                            className="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg transition-colors bg-background border hover:bg-accent hover:text-accent-foreground"
                           >
                             Documentation
                           </Link>
                           <Link
                             href="/login"
-                            className="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg transition-colors bg-white hover:bg-accent hover:text-accent-foreground"
+                            onClick={closeSheet}
+                            className="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg transition-colors bg-background border hover:bg-accent hover:text-accent-foreground"
                           >
                             Login
                           </Link>
                           <Link
                             href="/register"
-                            className="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg transition-colors bg-white hover:bg-accent hover:text-accent-foreground"
+                            onClick={closeSheet}
+                            className="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg transition-colors bg-background border hover:bg-accent hover:text-accent-foreground"
                           >
                             Register
                           </Link>
@@ -177,10 +184,10 @@ export function Header() {
                   <div className="p-6 bg-background border-t">
                     <div className="flex flex-col gap-3">
                       <Button asChild className="w-full" size="lg">
-                        <Link href="/register">Get Started</Link>
+                        <Link href="/register" onClick={closeSheet}>Get Started</Link>
                       </Button>
                       <Button asChild variant="outline" className="w-full">
-                        <Link href="/login">Login</Link>
+                        <Link href="/login" onClick={closeSheet}>Login</Link>
                       </Button>
                     </div>
                   </div>
