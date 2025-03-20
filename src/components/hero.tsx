@@ -35,21 +35,23 @@ export function Hero() {
             <div className="rounded-lg border bg-card p-8 shadow-sm">
               <div className="flex flex-col space-y-4">
                 <div className="space-y-2">
-                  <h3 className="font-semibold">Component Showcase</h3>
+                  <h3 className="font-semibold">What You Can Build</h3>
                   <p className="text-sm text-muted-foreground">
-                    This page showcases all the Shadcn UI components in one place.
-                    Scroll down to explore them all.
+                    This starter pack is ready for you to integrate powerful features like:
                   </p>
                 </div>
-                <div className="grid gap-2">
-                  <div className="rounded-md bg-accent p-2 text-sm">
-                    <code>npm install shadcn-ui</code>
+                <div className="grid gap-3">
+                  <div className="rounded-md border p-3 text-sm">
+                    <h4 className="font-medium mb-1">🔐 Supabase Auth</h4>
+                    <p className="text-xs text-muted-foreground">Implement secure authentication with social logins, magic links, and more.</p>
                   </div>
-                  <div className="rounded-md bg-accent p-2 text-sm">
-                    <code>npx shadcn-ui@latest init</code>
+                  <div className="rounded-md border p-3 text-sm">
+                    <h4 className="font-medium mb-1">📊 Database Integration</h4>
+                    <p className="text-xs text-muted-foreground">Connect to Supabase PostgreSQL database with real-time subscriptions.</p>
                   </div>
-                  <div className="rounded-md bg-accent p-2 text-sm">
-                    <code>npx shadcn-ui@latest add button</code>
+                  <div className="rounded-md border p-3 text-sm">
+                    <h4 className="font-medium mb-1">🎨 UI Components</h4>
+                    <p className="text-xs text-muted-foreground">Build beautiful interfaces with pre-configured Shadcn UI components.</p>
                   </div>
                 </div>
               </div>

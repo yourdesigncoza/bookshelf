@@ -37,7 +37,7 @@ export function Footer() {
           </p>
         </div>
         <p className="text-center text-sm text-muted-foreground md:text-left">
-          &copy; {new Date().getFullYear()} Augment Next.js Starter. All rights reserved.
+          Crafted with <span className="text-red-500">❤️</span> by JaySym
         </p>
       </div>
     </footer>

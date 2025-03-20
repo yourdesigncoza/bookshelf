@@ -18,7 +18,7 @@ import { Separator } from "@/components/ui/separator";
 import { Progress } from "@/components/ui/progress";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { AlertCircle, Check, ChevronsUpDown, Info, Plus } from "lucide-react";
+import { ChevronsUpDown, Info } from "lucide-react";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -366,12 +366,12 @@ export function ComponentShowcase() {
                   <div>
                     <p className="mb-4">
                       Jokester began sneaking into the castle in the middle of the night and leaving
-                      jokes all over the place: under the king's pillow, in his soup, even in the
+                      jokes all over the place: under the king&apos;s pillow, in his soup, even in the
                       royal toilet. The king was furious.
                     </p>
                     <p>
-                      "I will find this jokester," the king declared, "and when I do, I will lock
-                      him in the dungeon for a hundred years!"
+                      &ldquo;I will find this jokester,&rdquo; the king declared, &ldquo;and when I do, I will lock
+                      him in the dungeon for a hundred years!&rdquo;
                     </p>
                   </div>
                 </ScrollArea>

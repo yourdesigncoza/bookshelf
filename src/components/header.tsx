@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ThemeSwitcher } from "./theme-switcher";
 import { Button } from "@/components/ui/button";
 import {
@@ -20,7 +21,16 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container max-w-6xl mx-auto flex h-16 items-center justify-between px-4">
         <div className="flex items-center gap-6 md:gap-10">
-          <Link href="/" className="flex items-center space-x-2">
+          <Link href="/" className="flex items-center space-x-3">
+            <div className="relative w-8 h-8 overflow-hidden rounded-full">
+              <Image
+                src="/logo.png"
+                alt="Augment Logo"
+                width={32}
+                height={32}
+                className="object-cover"
+              />
+            </div>
             <span className="font-bold text-lg">
               Augment Next.js Starter
             </span>
