@@ -1,8 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Augment Next.js Starter Pack
 
-## Getting Started
+<div align="center">
 
-First, run the development server:
+![Augment](https://img.shields.io/badge/Augment-AI%20Coding-8A2BE2?style=for-the-badge)
+![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)
+![Shadcn UI](https://img.shields.io/badge/Shadcn%20UI-Latest-black?style=for-the-badge)
+![TypeScript](https://img.shields.io/badge/TypeScript-Latest-blue?style=for-the-badge&logo=typescript)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-Latest-38B2AC?style=for-the-badge&logo=tailwind-css)
+
+</div>
+
+A modern, elegant starter template for Next.js 15 projects with Shadcn UI components, optimized for use with Augment AI coding assistant. This template provides a solid foundation for building beautiful, responsive web applications with the power of AI assistance.
+
+## ✨ Features
+
+- 🔥 **Next.js 15** - The latest version of Next.js with App Router
+- 🎨 **Shadcn UI** - Beautiful, accessible UI components
+- 🌙 **Dark Mode** - Elegant light and dark mode support
+- 📱 **Responsive Design** - Looks great on all devices
+- 🧩 **Component Showcase** - Examples of all Shadcn UI components
+- 🤖 **Augment Ready** - Optimized for AI coding assistance
+- 🔧 **TypeScript** - Type safety and better developer experience
+- 🎭 **Tailwind CSS** - Utility-first CSS framework
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18.17 or later
+- npm, yarn, or pnpm
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/AiCodingBattle/augment-nextjs-starterpack.git my-project
+cd my-project
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+3. Start the development server:
 
 ```bash
 npm run dev
@@ -10,27 +57,60 @@ npm run dev
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📝 Important: Customize Your Augment Guidelines
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+> ⚠️ **Before using Augment with this template, you must modify the `.augment-guidelines` file to fit your project's specific requirements.**
 
-## Learn More
+The `.augment-guidelines` file contains instructions that help Augment understand your project structure, coding conventions, and preferences. By default, it includes some basic guidelines, but you should customize it to:
 
-To learn more about Next.js, take a look at the following resources:
+- Define your project's specific architecture
+- Set coding standards and conventions
+- Specify preferred patterns and approaches
+- Include any project-specific context that would help Augment provide better assistance
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To modify the guidelines:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Open the `.augment-guidelines` file in your project root
+2. Update the sections with your project-specific information
+3. Save the file
 
-## Deploy on Vercel
+Augment will use these guidelines when helping you write code for your project.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🎨 Customization
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Styling
+
+This template uses Tailwind CSS for styling. You can customize the theme in the `tailwind.config.js` file.
+
+### Components
+
+All Shadcn UI components are located in the `src/components/ui` directory. You can customize them to fit your needs.
+
+To add a new Shadcn UI component:
+
+```bash
+npx shadcn-ui@latest add button
+```
+
+### Pages
+
+Create new pages in the `src/app` directory following the Next.js App Router conventions.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🙏 Acknowledgements
+
+- [Next.js](https://nextjs.org/) - The React Framework
+- [Shadcn UI](https://ui.shadcn.com/) - UI Components
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+- [Augment](https://augmentcode.com/) - AI coding assistant

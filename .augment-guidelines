@@ -1,0 +1,37 @@
+Project Overview:
+
+***Please write the project description and goal here***
+
+###################
+
+Tech Stack:
+
+Framework: Next.js 15 (with Server-Side Rendering where applicable)
+Database: Supabase (with Supabase Auth for secure user management)
+UI Library: Shadcn UI (for modern, elegant, reusable components)
+
+###################
+
+Development Rules:
+
+- Component Reusability: Always use reusable components to maintain consistency and reduce redundancy. Check src/components/ui for existing components before creating new ones.
+
+***EXAMPLE YOU NEED TO ADAPT THAT RULE***
+- Authentication: Implement Supabase Auth with Server-Side Rendering (SSR) sessions for all protected routes and data access.
+Security: Ensure all endpoints, database queries, and user inputs are secure (e.g., use parameterized queries, validate inputs, and enforce role-based access).
+
+###################
+
+- UI Design:
+
+Use Shadcn UI for a modern, elegant, and consistent design.
+To install Shadcn components, run: npx shadcn@latest add <component-name> (e.g., button).
+Verify if the component exists in src/components/ui before installation to avoid duplication.
+- Responsiveness: Ensure all UI elements are fully responsive and mobile-friendly, tested across various screen sizes.
+
+###################
+
+Additional Notes:
+
+- Each page created should prioritize performance and user experience, using techniques like code splitting (e.g., lazy loading) 
+- ***Any additionnal rules goes here***
