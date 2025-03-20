@@ -13,6 +13,8 @@
 A modern, elegant starter template for Next.js 15 projects with Shadcn UI components, optimized for use with Augment AI coding assistant. This template provides a solid foundation for building beautiful, responsive web applications with the power of AI assistance.
 
 - [Augment](http://augmentcode.com/jay) - AI coding assistant - Try it for free now!
+- [Augment Discord Community for Help](https://discord.gg/sDQyM7N6t8)
+
 
 ## ✨ Features
 

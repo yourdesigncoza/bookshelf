@@ -76,9 +76,16 @@ export function Header() {
                   </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <Link href="http://augmentcode.com/jay" legacyBehavior passHref>
+                  <Link href="https://www.augmentcode.com/jay" legacyBehavior passHref>
                     <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                       Documentation
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <Link href="https://discord.gg/sDQyM7N6t8" legacyBehavior passHref>
+                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                      Discord Community
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
@@ -93,6 +100,7 @@ export function Header() {
             <Link href="/login" className="text-sm font-medium hover:underline">
               Login
             </Link>
+        
             <Button asChild>
               <Link href="/register">Get Started</Link>
             </Button>
@@ -156,11 +164,20 @@ export function Header() {
                         <h4 className="text-xs font-semibold text-muted-foreground mb-4 pl-4">RESOURCES</h4>
                         <nav className="space-y-1">
                           <Link
-                            href="https://www.augmentcode.com/jay"
+                            href="https://docs.augmentcode.com/introduction"
                             onClick={closeSheet}
                             className="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg transition-colors bg-background border hover:bg-accent hover:text-accent-foreground"
                           >
                             Documentation
+                          </Link>
+                          <Link
+                            href="https://discord.gg/sDQyM7N6t8"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={closeSheet}
+                            className="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg transition-colors bg-background border hover:bg-accent hover:text-accent-foreground"
+                          >
+                            Discord Community
                           </Link>
                           <Link
                             href="/login"
