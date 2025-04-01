@@ -15,7 +15,7 @@ A modern, elegant starter template for Next.js 15 projects with Shadcn UI compon
 - [Augment](http://augmentcode.com/jay) - AI coding assistant - Try it for free now!
 - [Augment Discord Community for Help](https://discord.gg/sDQyM7N6t8)
 
-- [Demo : See this package in action](https://augment-nextjs-starterpack.vercel.app/)
+- [Demo : See this package in action](https://augment-nextjs-starterpack.qlood.com/)
 
 
 ## ✨ Features
