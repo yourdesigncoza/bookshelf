@@ -32,7 +32,7 @@ export interface Book {
   author: string;
   genre?: string;
   rating?: number;
-  dateCompleted?: string;  // ISO date string
+  readDate?: string;  // ISO date string
   notes?: string;
   coverUrl?: string;
   pageCount?: number;
@@ -45,7 +45,7 @@ export interface CreateBookInput {
   title: string;
   author: string;
   genre?: string;
-  dateCompleted?: string;  // ISO date string
+  readDate?: string;  // ISO date string
   rating?: number;
   notes?: string;
   coverUrl?: string;

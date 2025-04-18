@@ -2,9 +2,11 @@ import { setupGlobalErrorHandlers } from './logger';
 
 // Initialize global error handlers
 export function initializeApp() {
-  // Set up global error handlers
-  setupGlobalErrorHandlers();
-  
+  // Only set up global error handlers in Node.js environment, not in Edge runtime
+  if (typeof process !== 'undefined' && process.on) {
+    setupGlobalErrorHandlers();
+  }
+
   // Add any other initialization logic here
 }
 

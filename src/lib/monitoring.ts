@@ -73,34 +73,4 @@ export function setContext(name: string, data: Record<string, any>) {
   }
 }
 
-/**
- * Start a performance transaction
- * @param name Transaction name
- * @param options Transaction options
- * @returns Transaction object
- */
-export function startTransaction(name: string, options?: Record<string, any>) {
-  try {
-    return Sentry.startTransaction({
-      name,
-      ...options,
-    });
-  } catch (error) {
-    console.error('Failed to start transaction:', error);
-    return null;
-  }
-}
-
-/**
- * Finish a performance transaction
- * @param transaction Transaction object
- */
-export function finishTransaction(transaction: any) {
-  try {
-    if (transaction) {
-      transaction.finish();
-    }
-  } catch (error) {
-    console.error('Failed to finish transaction:', error);
-  }
-}
+// Performance monitoring functions removed due to compatibility issues

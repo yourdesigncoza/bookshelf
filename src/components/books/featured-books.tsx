@@ -15,38 +15,38 @@ interface FeaturedBooksProps {
 
 export function FeaturedBooks({ books, limit = 5 }: FeaturedBooksProps) {
   const [featuredBooks, setFeaturedBooks] = useState<Book[]>([]);
-  
+
   // Select featured books based on rating and recency
   useEffect(() => {
     if (!books || books.length === 0) {
       setFeaturedBooks([]);
       return;
     }
-    
+
     // Sort by rating (highest first) and then by date completed (most recent first)
     const sorted = [...books].sort((a, b) => {
       // First sort by rating (highest first)
       const ratingDiff = (b.rating || 0) - (a.rating || 0);
       if (ratingDiff !== 0) return ratingDiff;
-      
+
       // Then sort by date completed (most recent first)
-      if (!a.dateCompleted) return 1;
-      if (!b.dateCompleted) return -1;
-      return new Date(b.dateCompleted).getTime() - new Date(a.dateCompleted).getTime();
+      if (!a.readDate) return 1;
+      if (!b.readDate) return -1;
+      return new Date(b.readDate).getTime() - new Date(a.readDate).getTime();
     });
-    
+
     // Take the top N books
     setFeaturedBooks(sorted.slice(0, limit));
   }, [books, limit]);
-  
+
   if (featuredBooks.length === 0) {
     return null;
   }
-  
+
   // Render rating stars
   const renderRating = (rating?: number) => {
     if (!rating) return null;
-    
+
     return (
       <div className="flex items-center" aria-label={`Rating: ${rating} out of 5 stars`}>
         {Array.from({ length: 5 }).map((_, i) => (
@@ -61,7 +61,7 @@ export function FeaturedBooks({ books, limit = 5 }: FeaturedBooksProps) {
       </div>
     );
   };
-  
+
   return (
     <div className="space-y-4">
       <div className="flex justify-between items-center">
@@ -73,7 +73,7 @@ export function FeaturedBooks({ books, limit = 5 }: FeaturedBooksProps) {
           </Link>
         </Button>
       </div>
-      
+
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
         {featuredBooks.map((book) => (
           <Card key={book.id} className="overflow-hidden h-full flex flex-col">

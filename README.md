@@ -1,4 +1,9 @@
-# 📚 Bookshelf - Personal Book Tracking App
+# ⚠️ INCOMPLETE / NOT WORKING! ⚠️
+
+<div align="center">
+<h1 style="color: red; font-size: 2.5rem;">BOOKSHELF APP</h1>
+<p style="font-size: 1.2rem; font-weight: bold; color: #ff6b6b;">This project is currently under development and not fully functional</p>
+</div>
 
 <div align="center">
 
@@ -13,6 +18,54 @@
 
 A modern, elegant web application for tracking your personal book collection. Bookshelf helps you manage your reading list, track your reading progress, and analyze your reading habits with beautiful visualizations.
 
+## ⚠️ Current Issues
+
+The application is currently experiencing the following error when running in development mode:
+
+```
+Internal error: Error: Unsupported Server Component type: Module
+```
+
+This error occurs when accessing the `/books/add` route due to an issue with the dynamic import of the BookForm component. The error is related to Next.js Server Components and module imports.
+
+### Attempted Fix
+
+A fix has been implemented by adding a default export to the `book-form.tsx` file, but additional configuration may be needed to fully resolve the issue with Sentry integration and Server Components.
+
+### Sentry Integration Issues
+
+The application includes Sentry for error tracking, but there are configuration warnings:
+
+1. Missing `onRouterTransitionStart` hook in `instrumentation-client.(js|ts)` file
+2. No global error handler set up (missing `global-error.js` file)
+3. Deprecated `sentry.client.config.js` file that should be renamed or moved to `instrumentation-client.ts`
+
+These issues should be addressed to ensure proper error tracking and monitoring.
+
+### Module Syntax Issues
+
+The project's `package.json` contains `"type": "module"` which requires using ES module syntax in `.js` files. This may be contributing to the Server Component error. When working with this codebase:
+
+- Use ES module syntax (`import`/`export`) in `.js` files
+- Rename files to `.cjs` if CommonJS syntax (`require`/`module.exports`) is needed
+- Be aware of potential conflicts between module systems when importing components
+
+### Next Steps to Fix
+
+1. **Fix Sentry Integration**:
+   - Create an `instrumentation-client.ts` file with the required hooks
+   - Add a `global-error.js` file for React rendering errors
+   - Update Sentry configuration to work with Next.js 13.5+
+
+2. **Resolve Module Type Issues**:
+   - Review dynamic imports and ensure they're compatible with ES modules
+   - Check for any CommonJS syntax in files that should use ES module syntax
+   - Consider removing `"type": "module"` from `package.json` if it's causing conflicts
+
+3. **Server Component Compatibility**:
+   - Ensure all Server Components follow Next.js best practices
+   - Review the dynamic import implementation in `src/lib/dynamic-import.tsx`
+   - Check for any circular dependencies that might be causing issues
 
 ## ✨ Features
 
