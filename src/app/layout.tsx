@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
+import { Navbar } from "@/components/layout/navbar";
+import { ResponsiveTester } from "@/components/responsive-tester";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Augment Next.js Starter",
-  description: "Augment is the best tool for AI coding. Modern UI Components for Next.js",
+  title: "Bookshelf - Track Your Reading Journey",
+  description: "A personal bookshelf app to track and manage your reading journey",
   icons: {
     icon: "/logo.png",
     apple: "/logo.png",
@@ -34,8 +36,12 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider>
-          {children}
+          <div className="relative flex min-h-screen flex-col">
+            <Navbar />
+            <main className="flex-1">{children}</main>
+          </div>
           <Toaster />
+          <ResponsiveTester />
         </ThemeProvider>
       </body>
     </html>
