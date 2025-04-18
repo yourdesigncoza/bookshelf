@@ -410,3 +410,6 @@ export function BookForm() {
     </Card>
   );
 }
+
+// Add default export for dynamic import
+export default BookForm;
