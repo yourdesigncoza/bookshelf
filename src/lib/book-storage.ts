@@ -1,4 +1,4 @@
-import { readJsonFile, writeJsonFile, backupJsonFile, exportJsonFile, importJsonFile, getBackupFiles } from './json-storage';
+import { readJsonFile, writeJsonFile, backupJsonFile, exportJsonFile, importJsonFile, getBackupFiles } from './json-storage-client';
 import { logger, AppError } from './logger';
 
 // Define the Book interface

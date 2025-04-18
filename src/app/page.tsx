@@ -4,20 +4,8 @@ import { getAllBooks } from '@/lib/book-storage';
 import { calculateTotalBooks, calculateAverageRating, findMostReadGenre } from '@/lib/statistics';
 import { Button } from '@/components/ui/button';
 
-// Dynamically import the featured books component
-const FeaturedBooks = dynamic(() => import('@/components/books/featured-books').then(mod => mod.FeaturedBooks), {
-  loading: () => (
-    <div className="animate-pulse space-y-4">
-      <div className="h-8 bg-muted rounded w-48"></div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-        {[...Array(5)].map((_, i) => (
-          <div key={i} className="h-64 bg-muted rounded"></div>
-        ))}
-      </div>
-    </div>
-  ),
-  ssr: false,
-});
+// Import the featured books component
+import { FeaturedBooks } from '@/components/books/featured-books';
 import { BookOpen, PlusCircle, Search, BarChart3, Star } from 'lucide-react';
 
 export default async function Home() {
