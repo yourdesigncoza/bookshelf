@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { Book } from '@/lib/types';
-import { BooksTable } from '@/components/books/books-table';
+import { DynamicBooksTable, DynamicVirtualizedBooksTable } from '@/lib/dynamic-import';
+import { TableViewToggle } from '@/components/books/table-view-toggle';
 import { FilterBar } from '@/components/books/filter-bar';
 import { SearchBar } from '@/components/books/search-bar';
 import { Button } from '@/components/ui/button';
@@ -24,6 +25,7 @@ export function BooksClient({ initialBooks }: BooksClientProps) {
   const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [debouncedQuery, setDebouncedQuery] = useState(initialQuery);
   const [filteredBooks, setFilteredBooks] = useState<Book[]>([]);
+  const [useVirtualized, setUseVirtualized] = useState(false);
 
   // Use the custom hook to fetch and filter books
   const { books, isLoading, error } = useBooks({
@@ -89,6 +91,9 @@ export function BooksClient({ initialBooks }: BooksClientProps) {
               className="w-full"
             />
           </div>
+          <div className="flex items-center">
+            <TableViewToggle onToggle={setUseVirtualized} />
+          </div>
         </div>
 
         <FilterBar
@@ -110,7 +115,11 @@ export function BooksClient({ initialBooks }: BooksClientProps) {
         )}
       </div>
 
-      <BooksTable books={filteredBooks} isLoading={isLoading} />
+      {useVirtualized ? (
+        <DynamicVirtualizedBooksTable books={filteredBooks} isLoading={isLoading} />
+      ) : (
+        <DynamicBooksTable books={filteredBooks} isLoading={isLoading} />
+      )}
 
       {error && (
         <div className="mt-4 p-4 bg-destructive/10 text-destructive rounded-md">

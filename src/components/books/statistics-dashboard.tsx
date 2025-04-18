@@ -60,11 +60,11 @@ export function StatisticsDashboard({ books }: StatisticsDashboardProps) {
   };
 
   return (
-    <div className="space-y-6">
-      <h2 className="text-2xl font-bold text-center">Reading Statistics</h2>
+    <div className="space-y-6" role="region" aria-labelledby="statistics-heading">
+      <h2 className="text-2xl font-bold text-center" id="statistics-heading">Reading Statistics</h2>
 
       <Tabs defaultValue="overview" onValueChange={setActiveTab}>
-        <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-0">
+        <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-0" aria-label="Statistics categories">
           <TabsTrigger value="overview">Overview</TabsTrigger>
           <TabsTrigger value="genres">Genres</TabsTrigger>
           <TabsTrigger value="timeline">Timeline</TabsTrigger>
@@ -79,7 +79,7 @@ export function StatisticsDashboard({ books }: StatisticsDashboardProps) {
                 <CardTitle className="text-sm font-medium">
                   Total Books
                 </CardTitle>
-                <BookOpen className="h-4 w-4 text-muted-foreground" />
+                <BookOpen className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">{stats.totalBooks}</div>
@@ -95,7 +95,7 @@ export function StatisticsDashboard({ books }: StatisticsDashboardProps) {
                 <CardTitle className="text-sm font-medium">
                   Average Rating
                 </CardTitle>
-                <Star className="h-4 w-4 text-muted-foreground" />
+                <Star className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">{stats.averageRating}</div>
@@ -111,7 +111,7 @@ export function StatisticsDashboard({ books }: StatisticsDashboardProps) {
                 <CardTitle className="text-sm font-medium">
                   Most Read Genre
                 </CardTitle>
-                <BookText className="h-4 w-4 text-muted-foreground" />
+                <BookText className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold capitalize">
@@ -139,7 +139,7 @@ export function StatisticsDashboard({ books }: StatisticsDashboardProps) {
                   .map(([rating, count]) => (
                     <div key={rating} className="flex items-center">
                       <div className="w-12 text-right mr-2 sm:mr-4">
-                        {rating} <Star className="inline-block h-3 w-3 fill-yellow-500 text-yellow-500" />
+                        {rating} <Star className="inline-block h-3 w-3 fill-yellow-500 text-yellow-500" aria-hidden="true" />
                       </div>
                       <div className="w-full bg-muted rounded-full h-4 overflow-hidden">
                         <div
@@ -147,6 +147,11 @@ export function StatisticsDashboard({ books }: StatisticsDashboardProps) {
                           style={{
                             width: `${stats.totalBooks > 0 ? (count / stats.totalBooks) * 100 : 0}%`
                           }}
+                          role="progressbar"
+                          aria-valuenow={count}
+                          aria-valuemin={0}
+                          aria-valuemax={stats.totalBooks}
+                          aria-label={`${rating} stars: ${count} books (${stats.totalBooks > 0 ? Math.round((count / stats.totalBooks) * 100) : 0}%)`}
                         ></div>
                       </div>
                       <div className="w-8 sm:w-12 text-right ml-2 sm:ml-4">{count}</div>
@@ -178,6 +183,11 @@ export function StatisticsDashboard({ books }: StatisticsDashboardProps) {
                           style={{
                             width: `${stats.totalBooks > 0 ? (count / stats.totalBooks) * 100 : 0}%`
                           }}
+                          role="progressbar"
+                          aria-valuenow={count}
+                          aria-valuemin={0}
+                          aria-valuemax={stats.totalBooks}
+                          aria-label={`${genre}: ${count} books (${stats.totalBooks > 0 ? Math.round((count / stats.totalBooks) * 100) : 0}%)`}
                         ></div>
                       </div>
                       <div className="w-8 sm:w-12 text-right ml-2 sm:ml-4">{count}</div>
@@ -219,6 +229,11 @@ export function StatisticsDashboard({ books }: StatisticsDashboardProps) {
                               ? (count / Math.max(...Object.values(stats.booksPerYear))) * 100
                               : 0}%`
                           }}
+                          role="progressbar"
+                          aria-valuenow={count}
+                          aria-valuemin={0}
+                          aria-valuemax={Math.max(...Object.values(stats.booksPerYear))}
+                          aria-label={`${year}: ${count} books`}
                         ></div>
                       </div>
                       <div className="w-8 sm:w-12 text-right ml-2 sm:ml-4">{count}</div>
@@ -257,6 +272,11 @@ export function StatisticsDashboard({ books }: StatisticsDashboardProps) {
                               ? (count / Math.max(...Object.values(stats.booksPerMonth))) * 100
                               : 0}%`
                           }}
+                          role="progressbar"
+                          aria-valuenow={count}
+                          aria-valuemin={0}
+                          aria-valuemax={Math.max(...Object.values(stats.booksPerMonth))}
+                          aria-label={`${month}: ${count} books`}
                         ></div>
                       </div>
                       <div className="w-8 sm:w-12 text-right ml-2 sm:ml-4">{count}</div>

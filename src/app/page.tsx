@@ -1,7 +1,23 @@
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { getAllBooks } from '@/lib/book-storage';
 import { calculateTotalBooks, calculateAverageRating, findMostReadGenre } from '@/lib/statistics';
 import { Button } from '@/components/ui/button';
+
+// Dynamically import the featured books component
+const FeaturedBooks = dynamic(() => import('@/components/books/featured-books').then(mod => mod.FeaturedBooks), {
+  loading: () => (
+    <div className="animate-pulse space-y-4">
+      <div className="h-8 bg-muted rounded w-48"></div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        {[...Array(5)].map((_, i) => (
+          <div key={i} className="h-64 bg-muted rounded"></div>
+        ))}
+      </div>
+    </div>
+  ),
+  ssr: false,
+});
 import { BookOpen, PlusCircle, Search, BarChart3, Star } from 'lucide-react';
 
 export default async function Home() {
@@ -14,11 +30,11 @@ export default async function Home() {
   const mostReadGenre = findMostReadGenre(books);
   return (
     <div className="container py-8 md:py-12 lg:py-24 space-y-12 md:space-y-16 lg:space-y-20">
-      <section className="flex flex-col items-center text-center space-y-4">
+      <section className="flex flex-col items-center text-center space-y-4" aria-labelledby="main-heading">
         <div className="inline-block p-3 rounded-full bg-primary/10 text-primary">
           <BookOpen className="h-10 w-10" />
         </div>
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+        <h1 id="main-heading" className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
           Track Your Reading Journey
         </h1>
         <p className="text-xl text-muted-foreground max-w-[600px] mx-auto">
@@ -27,20 +43,20 @@ export default async function Home() {
         <div className="flex flex-col sm:flex-row gap-4 mt-4">
           <Button size="lg" asChild>
             <Link href="/books">
-              <BookOpen className="mr-2 h-5 w-5" />
-              View My Books
+              <BookOpen className="mr-2 h-5 w-5" aria-hidden="true" />
+              <span>View My Books</span>
             </Link>
           </Button>
           <Button size="lg" variant="outline" asChild>
             <Link href="/books/add">
-              <PlusCircle className="mr-2 h-5 w-5" />
-              Add New Book
+              <PlusCircle className="mr-2 h-5 w-5" aria-hidden="true" />
+              <span>Add New Book</span>
             </Link>
           </Button>
         </div>
       </section>
 
-      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8" aria-label="Features">
         <div className="flex flex-col items-center text-center p-6 rounded-lg border bg-card">
           <div className="p-3 rounded-full bg-primary/10 text-primary mb-4">
             <PlusCircle className="h-6 w-6" />
@@ -73,18 +89,18 @@ export default async function Home() {
       </section>
 
       {/* Statistics Section */}
-      <section className="rounded-lg border bg-card p-6">
+      <section className="rounded-lg border bg-card p-6" aria-labelledby="stats-heading">
         <div className="flex flex-col md:flex-row items-center justify-between mb-4 md:mb-6 space-y-3 md:space-y-0">
           <div className="flex items-center">
             <div className="p-2 sm:p-3 rounded-full bg-primary/10 text-primary mr-2 sm:mr-4">
               <BarChart3 className="h-6 w-6" />
             </div>
-            <h2 className="text-xl sm:text-2xl font-semibold">Your Reading Statistics</h2>
+            <h2 id="stats-heading" className="text-xl sm:text-2xl font-semibold">Your Reading Statistics</h2>
           </div>
           <Button asChild>
             <Link href="/books/statistics">
-              <BarChart3 className="mr-2 h-4 w-4" />
-              View Detailed Statistics
+              <BarChart3 className="mr-2 h-4 w-4" aria-hidden="true" />
+              <span>View Detailed Statistics</span>
             </Link>
           </Button>
         </div>
@@ -120,12 +136,19 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="text-center">
-        <h2 className="text-2xl font-bold mb-4">Ready to start tracking your books?</h2>
+      {/* Featured Books Section */}
+      {books.length > 0 && (
+        <section className="rounded-lg border bg-card p-6" aria-labelledby="featured-books-heading">
+          <FeaturedBooks books={books} limit={5} />
+        </section>
+      )}
+
+      <section className="text-center" aria-labelledby="cta-heading">
+        <h2 id="cta-heading" className="text-2xl font-bold mb-4">Ready to start tracking your books?</h2>
         <Button size="lg" asChild>
           <Link href="/books/add">
-            <PlusCircle className="mr-2 h-5 w-5" />
-            Add Your First Book
+            <PlusCircle className="mr-2 h-5 w-5" aria-hidden="true" />
+            <span>Add Your First Book</span>
           </Link>
         </Button>
       </section>

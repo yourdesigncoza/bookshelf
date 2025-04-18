@@ -1,0 +1,69 @@
+{
+  "books": [
+    {
+      "id": "1",
+      "title": "The Hobbit",
+      "author": "J.R.R. Tolkien",
+      "genre": "Fantasy",
+      "dateCompleted": "2023-01-15",
+      "rating": 5,
+      "notes": "A classic fantasy adventure.",
+      "coverUrl": "https://example.com/covers/hobbit.jpg",
+      "pageCount": 295,
+      "createdAt": "2023-01-01T00:00:00.000Z",
+      "updatedAt": "2023-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "2",
+      "title": "To Kill a Mockingbird",
+      "author": "Harper Lee",
+      "genre": "Fiction",
+      "dateCompleted": "2023-02-20",
+      "rating": 4,
+      "notes": "A powerful exploration of racial injustice.",
+      "coverUrl": "https://example.com/covers/mockingbird.jpg",
+      "pageCount": 281,
+      "createdAt": "2023-02-01T00:00:00.000Z",
+      "updatedAt": "2023-02-01T00:00:00.000Z"
+    },
+    {
+      "id": "3",
+      "title": "1984",
+      "author": "George Orwell",
+      "genre": "Dystopian",
+      "dateCompleted": "2023-03-10",
+      "rating": 5,
+      "notes": "A chilling vision of a totalitarian future.",
+      "coverUrl": "https://example.com/covers/1984.jpg",
+      "pageCount": 328,
+      "createdAt": "2023-03-01T00:00:00.000Z",
+      "updatedAt": "2023-03-01T00:00:00.000Z"
+    },
+    {
+      "id": "4",
+      "title": "Pride and Prejudice",
+      "author": "Jane Austen",
+      "genre": "Romance",
+      "dateCompleted": "2023-04-05",
+      "rating": 4,
+      "notes": "A classic romance novel.",
+      "coverUrl": "https://example.com/covers/pride.jpg",
+      "pageCount": 432,
+      "createdAt": "2023-04-01T00:00:00.000Z",
+      "updatedAt": "2023-04-01T00:00:00.000Z"
+    },
+    {
+      "id": "5",
+      "title": "The Great Gatsby",
+      "author": "F. Scott Fitzgerald",
+      "genre": "Fiction",
+      "dateCompleted": "2023-05-12",
+      "rating": 3,
+      "notes": "A portrait of the Jazz Age.",
+      "coverUrl": "https://example.com/covers/gatsby.jpg",
+      "pageCount": 180,
+      "createdAt": "2023-05-01T00:00:00.000Z",
+      "updatedAt": "2023-05-01T00:00:00.000Z"
+    }
+  ]
+}

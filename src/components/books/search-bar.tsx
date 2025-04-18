@@ -70,12 +70,21 @@ export function SearchBar({
           className="pl-8 pr-10 h-10 sm:h-9"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
+          aria-label="Search books"
+          onKeyDown={(e) => {
+            // Clear search on Escape key
+            if (e.key === 'Escape' && searchQuery) {
+              e.preventDefault();
+              setSearchQuery('');
+            }
+          }}
         />
         {searchQuery && (
           <button
             type="button"
             onClick={() => setSearchQuery('')}
             className="absolute right-2.5 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground p-2 -mr-2"
+            aria-label="Clear search"
           >
             <X className="h-4 w-4" />
           </button>

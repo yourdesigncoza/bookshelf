@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { Book } from '@/lib/types';
-import { BooksTable } from '@/components/books/books-table';
+import { DynamicBooksTable, DynamicVirtualizedBooksTable } from '@/lib/dynamic-import';
+import { TableViewToggle } from '@/components/books/table-view-toggle';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ArrowLeft, Search, X } from 'lucide-react';
@@ -17,11 +18,12 @@ interface SearchClientProps {
 export function SearchClient({ initialBooks, initialQuery }: SearchClientProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  
+
   const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [debouncedQuery, setDebouncedQuery] = useState(initialQuery);
   const [isSearching, setIsSearching] = useState(false);
-  
+  const [useVirtualized, setUseVirtualized] = useState(false);
+
   // Filter books based on search query
   const filteredBooks = debouncedQuery
     ? initialBooks.filter(book => {
@@ -34,12 +36,12 @@ export function SearchClient({ initialBooks, initialQuery }: SearchClientProps) 
         );
       })
     : [];
-  
+
   // Debounce search query
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedQuery(searchQuery);
-      
+
       // Update URL with search query
       const params = new URLSearchParams(searchParams);
       if (searchQuery) {
@@ -47,14 +49,14 @@ export function SearchClient({ initialBooks, initialQuery }: SearchClientProps) 
       } else {
         params.delete('q');
       }
-      
+
       // Update URL
       router.replace(`/books/search?${params.toString()}`);
     }, 300);
-    
+
     return () => clearTimeout(timer);
   }, [searchQuery, router, searchParams]);
-  
+
   // Show searching state briefly
   useEffect(() => {
     if (searchQuery !== debouncedQuery) {
@@ -63,16 +65,16 @@ export function SearchClient({ initialBooks, initialQuery }: SearchClientProps) 
       const timer = setTimeout(() => {
         setIsSearching(false);
       }, 300);
-      
+
       return () => clearTimeout(timer);
     }
   }, [searchQuery, debouncedQuery]);
-  
+
   // Handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setDebouncedQuery(searchQuery);
-    
+
     // Update URL with search query
     const params = new URLSearchParams(searchParams);
     if (searchQuery) {
@@ -80,23 +82,26 @@ export function SearchClient({ initialBooks, initialQuery }: SearchClientProps) 
     } else {
       params.delete('q');
     }
-    
+
     // Update URL
     router.replace(`/books/search?${params.toString()}`);
   };
-  
+
   return (
     <div>
       <div className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4">
         <h1 className="text-3xl font-bold">Search Books</h1>
-        <Button variant="outline" asChild>
-          <Link href="/books">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Books
-          </Link>
-        </Button>
+        <div className="flex items-center gap-4">
+          <TableViewToggle onToggle={setUseVirtualized} />
+          <Button variant="outline" asChild>
+            <Link href="/books">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Back to Books
+            </Link>
+          </Button>
+        </div>
       </div>
-      
+
       <form onSubmit={handleSubmit} className="mb-6">
         <div className="relative">
           <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -119,7 +124,7 @@ export function SearchClient({ initialBooks, initialQuery }: SearchClientProps) 
           )}
         </div>
       </form>
-      
+
       {debouncedQuery && (
         <div className="mb-4">
           <h2 className="text-xl font-semibold">
@@ -132,7 +137,7 @@ export function SearchClient({ initialBooks, initialQuery }: SearchClientProps) 
           </p>
         </div>
       )}
-      
+
       {!debouncedQuery ? (
         <div className="text-center py-12">
           <p className="text-lg font-medium">Enter a search term to find books</p>
@@ -140,8 +145,10 @@ export function SearchClient({ initialBooks, initialQuery }: SearchClientProps) 
             You can search by title, author, genre, or notes
           </p>
         </div>
+      ) : useVirtualized ? (
+        <DynamicVirtualizedBooksTable books={filteredBooks} isLoading={isSearching} />
       ) : (
-        <BooksTable books={filteredBooks} isLoading={isSearching} />
+        <DynamicBooksTable books={filteredBooks} isLoading={isSearching} />
       )}
     </div>
   );

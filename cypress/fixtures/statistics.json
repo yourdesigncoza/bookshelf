@@ -1,0 +1,38 @@
+{
+  "statistics": {
+    "totalBooks": 5,
+    "averageRating": 4.2,
+    "mostReadGenre": "Fiction",
+    "totalPagesRead": 1516,
+    "booksPerMonth": {
+      "January": 1,
+      "February": 1,
+      "March": 1,
+      "April": 1,
+      "May": 1,
+      "June": 0,
+      "July": 0,
+      "August": 0,
+      "September": 0,
+      "October": 0,
+      "November": 0,
+      "December": 0
+    },
+    "booksPerYear": {
+      "2023": 5
+    },
+    "ratingDistribution": {
+      "1": 0,
+      "2": 0,
+      "3": 1,
+      "4": 2,
+      "5": 2
+    },
+    "genreDistribution": {
+      "Fantasy": 1,
+      "Fiction": 2,
+      "Dystopian": 1,
+      "Romance": 1
+    }
+  }
+}

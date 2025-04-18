@@ -1,0 +1,15 @@
+{
+  "book": {
+    "id": "1",
+    "title": "The Hobbit",
+    "author": "J.R.R. Tolkien",
+    "genre": "Fantasy",
+    "dateCompleted": "2023-01-15",
+    "rating": 5,
+    "notes": "A classic fantasy adventure about Bilbo Baggins, a hobbit who embarks on an unexpected journey with a group of dwarves to reclaim their mountain home from a dragon named Smaug. Along the way, Bilbo discovers courage, friendship, and a magical ring that will change the fate of Middle-earth.",
+    "coverUrl": "https://example.com/covers/hobbit.jpg",
+    "pageCount": 295,
+    "createdAt": "2023-01-01T00:00:00.000Z",
+    "updatedAt": "2023-01-01T00:00:00.000Z"
+  }
+}

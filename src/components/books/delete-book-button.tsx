@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Trash2 } from 'lucide-react';
+import { FocusTrap } from '@/lib/focus-trap';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import {
@@ -35,8 +36,27 @@ export function DeleteBookButton({
   className = '',
   onDeleted,
 }: DeleteBookButtonProps) {
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const focusTrapRef = useRef<FocusTrap | null>(null);
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+
+  // Set up focus trap for the dialog
+  useEffect(() => {
+    if (isOpen && dialogRef.current) {
+      focusTrapRef.current = new FocusTrap(dialogRef.current);
+      focusTrapRef.current.activate();
+    } else if (focusTrapRef.current) {
+      focusTrapRef.current.deactivate();
+      focusTrapRef.current = null;
+    }
+
+    return () => {
+      if (focusTrapRef.current) {
+        focusTrapRef.current.deactivate();
+      }
+    };
+  }, [isOpen]);
   const [isDeleting, setIsDeleting] = useState(false);
 
   const handleDelete = async () => {
@@ -66,6 +86,7 @@ export function DeleteBookButton({
 
   return (
     <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
+      <div ref={dialogRef}>
       <AlertDialogTrigger asChild>
         <Button
           variant={variant}
@@ -97,6 +118,7 @@ export function DeleteBookButton({
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
+      </div>
     </AlertDialog>
   );
 }

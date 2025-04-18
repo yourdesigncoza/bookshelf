@@ -1,33 +1,31 @@
-# 🚀 Augment Next.js Starter Pack
+# 📚 Bookshelf - Personal Book Tracking App
 
 <div align="center">
 
-![Augment](https://img.shields.io/badge/Augment-AI%20Coding-8A2BE2?style=for-the-badge)
 ![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)
-![Shadcn UI](https://img.shields.io/badge/Shadcn%20UI-Latest-black?style=for-the-badge)
-![TypeScript](https://img.shields.io/badge/TypeScript-Latest-blue?style=for-the-badge&logo=typescript)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-Latest-38B2AC?style=for-the-badge&logo=tailwind-css)
+![Supabase](https://img.shields.io/badge/Supabase-Database-3ECF8E?style=for-the-badge&logo=supabase)
+![Shadcn UI](https://img.shields.io/badge/Shadcn%20UI-Components-black?style=for-the-badge)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-Styling-38B2AC?style=for-the-badge&logo=tailwind-css)
+![Jest](https://img.shields.io/badge/Jest-Testing-C21325?style=for-the-badge&logo=jest)
 
 </div>
 
-A modern, elegant starter template for Next.js 15 projects with Shadcn UI components, optimized for use with Augment AI coding assistant. This template provides a solid foundation for building beautiful, responsive web applications with the power of AI assistance.
-
-- [Augment](http://augmentcode.com/jay) - AI coding assistant - Try it for free now!
-- [Augment Discord Community for Help](https://discord.gg/sDQyM7N6t8)
-
-- [Demo : See this package in action](https://augment-nextjs-starterpack.qlood.com/)
+A modern, elegant web application for tracking your personal book collection. Bookshelf helps you manage your reading list, track your reading progress, and analyze your reading habits with beautiful visualizations.
 
 
 ## ✨ Features
 
-- 🔥 **Next.js 15** - The latest version of Next.js with App Router
-- 🎨 **Shadcn UI** - Beautiful, accessible UI components
+- 📚 **Book Management** - Add, edit, and delete books in your collection
+- 🔍 **Advanced Search & Filtering** - Find books by title, author, genre, and more
+- 📊 **Reading Statistics** - Visualize your reading habits with charts and graphs
+- 📱 **Responsive Design** - Works seamlessly on desktop, tablet, and mobile devices
 - 🌙 **Dark Mode** - Elegant light and dark mode support
-- 📱 **Responsive Design** - Looks great on all devices
-- 🧩 **Component Showcase** - Examples of all Shadcn UI components
-- 🤖 **Augment Ready** - Optimized for AI coding assistance
+- ⚡ **Performance Optimized** - Fast loading with code splitting and lazy loading
+- 🧪 **Comprehensive Testing** - Unit, integration, and accessibility tests
+- 🔒 **Accessibility** - WCAG compliant with keyboard navigation and screen reader support
+- 💾 **Data Import/Export** - Backup and restore your book collection
 - 🔧 **TypeScript** - Type safety and better developer experience
-- 🎭 **Tailwind CSS** - Utility-first CSS framework
 
 ## 🚀 Getting Started
 
@@ -41,8 +39,8 @@ A modern, elegant starter template for Next.js 15 projects with Shadcn UI compon
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/AiCodingBattle/augment-nextjs-starterpack.git my-project
-cd my-project
+git clone https://github.com/yourdesigncoza/bookshelf.git
+cd bookshelf
 ```
 
 2. Install dependencies:
@@ -67,24 +65,63 @@ pnpm dev
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
-## 📝 Important: Customize Your Augment Guidelines
+## 🧪 Testing
 
-> ⚠️ **Before using Augment with this template, you must modify the `.augment-guidelines` file to fit your project's specific requirements.**
+This project includes a comprehensive testing setup with Jest, React Testing Library, and Cypress.
 
-The `.augment-guidelines` file contains instructions that help Augment understand your project structure, coding conventions, and preferences. By default, it includes some basic guidelines, but you should customize it to:
+### Running Unit Tests
 
-- Define your project's specific architecture
-- Set coding standards and conventions
-- Specify preferred patterns and approaches
-- Include any project-specific context that would help Augment provide better assistance
+```bash
+# Run all unit tests
+npm test
 
-To modify the guidelines:
+# Run tests in watch mode
+npm run test:watch
 
-1. Open the `.augment-guidelines` file in your project root
-2. Update the sections with your project-specific information
-3. Save the file
+# Generate coverage report
+npm run test:coverage
 
-Augment will use these guidelines when helping you write code for your project.
+# Generate and view detailed coverage report
+npm run coverage
+```
+
+### Running Integration Tests
+
+```bash
+# Open Cypress Test Runner
+npm run cypress
+
+# Run Cypress tests headlessly
+npm run cypress:headless
+
+# Start dev server and run tests
+npm run test:e2e
+```
+
+For more details about testing, see the [TESTING.md](TESTING.md) and [Integration Testing Guide](docs/integration-testing.md) files.
+
+## 📱 Application Structure
+
+- **`/src/app`** - Next.js App Router pages and layouts
+- **`/src/components`** - Reusable React components
+  - **`/ui`** - Shadcn UI components
+  - **`/books`** - Book-related components
+  - **`/layout`** - Layout components
+- **`/src/lib`** - Utility functions and type definitions
+- **`/src/hooks`** - Custom React hooks
+- **`/src/__tests__`** - Test files
+- **`/public`** - Static assets
+
+## 🔒 Accessibility
+
+This application is designed with accessibility in mind, following WCAG 2.1 guidelines. Features include:
+
+- Semantic HTML structure
+- Keyboard navigation support
+- Screen reader compatibility
+- Sufficient color contrast
+- Focus management
+- Skip links for keyboard users
 
 ## 🎨 Customization
 
@@ -110,6 +147,12 @@ Create new pages in the `src/app` directory following the Next.js App Router con
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
 ## 📄 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
@@ -117,6 +160,9 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## 🙏 Acknowledgements
 
 - [Next.js](https://nextjs.org/) - The React Framework
+- [Supabase](https://supabase.com/) - Open source Firebase alternative
 - [Shadcn UI](https://ui.shadcn.com/) - UI Components
 - [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
-- [Augment](http://augmentcode.com/jay) - AI coding assistant
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) - Testing utilities
+- [Jest](https://jestjs.io/) - JavaScript Testing Framework
+- [Cypress](https://www.cypress.io/) - End-to-End Testing

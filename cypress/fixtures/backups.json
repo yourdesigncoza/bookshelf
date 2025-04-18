@@ -1,0 +1,19 @@
+{
+  "backups": [
+    {
+      "filename": "books_backup_1714285200000.json",
+      "createdAt": "2024-04-28T10:00:00.000Z",
+      "size": 2048
+    },
+    {
+      "filename": "books_backup_1714198800000.json",
+      "createdAt": "2024-04-27T10:00:00.000Z",
+      "size": 1536
+    },
+    {
+      "filename": "books_backup_1714112400000.json",
+      "createdAt": "2024-04-26T10:00:00.000Z",
+      "size": 1024
+    }
+  ]
+}

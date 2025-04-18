@@ -6,9 +6,10 @@ import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { ModeToggle } from '@/components/layout/mode-toggle';
 import { SearchBar } from '@/components/books/search-bar';
+import { FeedbackButton } from '@/components/feedback/feedback-button';
 import { cn } from '@/lib/utils';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { BookOpen, Home, PlusCircle, Search, Database, BarChart3, Menu, X, Smartphone } from 'lucide-react';
+import { BookOpen, Home, PlusCircle, Search, Database, BarChart3, Menu, X, Smartphone, Accessibility } from 'lucide-react';
 
 export function Navbar() {
   const pathname = usePathname();
@@ -21,40 +22,46 @@ export function Navbar() {
     {
       href: '/',
       label: 'Home',
-      icon: <Home className="h-4 w-4 mr-2" />,
+      icon: <Home className="h-4 w-4 mr-2" aria-hidden="true" />,
     },
     {
       href: '/books',
       label: 'My Books',
-      icon: <BookOpen className="h-4 w-4 mr-2" />,
+      icon: <BookOpen className="h-4 w-4 mr-2" aria-hidden="true" />,
     },
     {
       href: '/books/add',
       label: 'Add Book',
-      icon: <PlusCircle className="h-4 w-4 mr-2" />,
+      icon: <PlusCircle className="h-4 w-4 mr-2" aria-hidden="true" />,
     },
     {
       href: '/books/search',
       label: 'Search',
-      icon: <Search className="h-4 w-4 mr-2" />,
+      icon: <Search className="h-4 w-4 mr-2" aria-hidden="true" />,
       hideOnMobile: true,
     },
     {
       href: '/books/statistics',
       label: 'Statistics',
-      icon: <BarChart3 className="h-4 w-4 mr-2" />,
+      icon: <BarChart3 className="h-4 w-4 mr-2" aria-hidden="true" />,
       hideOnMobile: true,
     },
     {
       href: '/books/manage',
       label: 'Manage Data',
-      icon: <Database className="h-4 w-4 mr-2" />,
+      icon: <Database className="h-4 w-4 mr-2" aria-hidden="true" />,
       hideOnMobile: true,
     },
     {
       href: '/responsive-test',
       label: 'Test Responsive',
-      icon: <Smartphone className="h-4 w-4 mr-2" />,
+      icon: <Smartphone className="h-4 w-4 mr-2" aria-hidden="true" />,
+      hideOnMobile: true,
+    },
+    {
+      href: '/accessibility-test',
+      label: 'Accessibility',
+      icon: <Accessibility className="h-4 w-4 mr-2" aria-hidden="true" />,
       hideOnMobile: true,
     },
   ];
@@ -64,7 +71,7 @@ export function Navbar() {
       <div className="container flex h-14 items-center justify-between">
         <div className="flex items-center">
           <Link href="/" className="flex items-center space-x-2">
-            <BookOpen className="h-6 w-6" />
+            <BookOpen className="h-6 w-6" aria-hidden="true" />
             <span className="font-bold hidden sm:inline-block">Bookshelf</span>
           </Link>
 
@@ -108,20 +115,21 @@ export function Navbar() {
             ))}
           </div>
 
+          <FeedbackButton />
           <ModeToggle />
 
           {/* Mobile Menu Button */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="md:hidden">
-                <Menu className="h-5 w-5" />
+                <Menu className="h-5 w-5" aria-hidden="true" />
                 <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[280px] sm:w-[350px]">
               <SheetHeader className="text-left border-b pb-4 mb-4">
                 <SheetTitle className="flex items-center">
-                  <BookOpen className="h-6 w-6 mr-2" />
+                  <BookOpen className="h-6 w-6 mr-2" aria-hidden="true" />
                   <span>Bookshelf</span>
                 </SheetTitle>
               </SheetHeader>
@@ -143,6 +151,9 @@ export function Navbar() {
                 ))}
                 <div className="pt-4 mt-4 border-t">
                   <SearchBar className="mb-4" />
+                  <div className="flex justify-center">
+                    <FeedbackButton />
+                  </div>
                 </div>
               </div>
             </SheetContent>

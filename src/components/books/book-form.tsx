@@ -116,16 +116,16 @@ export function BookForm() {
   };
 
   return (
-    <Card className="w-full max-w-2xl mx-auto">
+    <Card className="w-full max-w-2xl mx-auto" role="region" aria-labelledby="book-form-title">
       <CardHeader className="px-4 sm:px-6">
-        <CardTitle className="text-xl sm:text-2xl">Add New Book</CardTitle>
+        <CardTitle className="text-xl sm:text-2xl" id="book-form-title">Add New Book</CardTitle>
         <CardDescription className="text-sm">
           Enter the details of the book you've read.
         </CardDescription>
       </CardHeader>
       <CardContent className="px-4 sm:px-6">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6" aria-labelledby="book-form-title">
             <FormError message={error} />
             <FormSuccess message={success} />
             {/* Title field */}
@@ -134,9 +134,9 @@ export function BookForm() {
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-sm">Title</FormLabel>
+                  <FormLabel className="text-sm" htmlFor="title">Title</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter book title" className="h-10 sm:h-9" {...field} />
+                    <Input id="title" placeholder="Enter book title" className="h-10 sm:h-9" {...field} required aria-required="true" />
                   </FormControl>
                   <FormDescription className="text-xs sm:text-sm">
                     The title of the book you've read.
@@ -152,9 +152,9 @@ export function BookForm() {
               name="author"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-sm">Author</FormLabel>
+                  <FormLabel className="text-sm" htmlFor="author">Author</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter author name" className="h-10 sm:h-9" {...field} />
+                    <Input id="author" placeholder="Enter author name" className="h-10 sm:h-9" {...field} required aria-required="true" />
                   </FormControl>
                   <FormDescription className="text-xs sm:text-sm">
                     The author of the book.
@@ -170,13 +170,13 @@ export function BookForm() {
               name="genre"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-sm">Genre</FormLabel>
+                  <FormLabel className="text-sm" htmlFor="genre">Genre</FormLabel>
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
                     <FormControl>
-                      <SelectTrigger className="h-10 sm:h-9">
+                      <SelectTrigger className="h-10 sm:h-9" id="genre">
                         <SelectValue placeholder="Select a genre" />
                       </SelectTrigger>
                     </FormControl>
@@ -202,13 +202,16 @@ export function BookForm() {
               name="dateCompleted"
               render={({ field }) => (
                 <FormItem className="flex flex-col">
-                  <FormLabel className="text-sm">Date Completed</FormLabel>
+                  <FormLabel className="text-sm" htmlFor="dateCompleted">Date Completed</FormLabel>
                   <Popover>
                     <PopoverTrigger asChild>
                       <FormControl>
                         <Button
                           variant={"outline"}
                           className={"w-full pl-3 text-left font-normal h-10 sm:h-9"}
+                          aria-label="Select date completed"
+                          id="dateCompleted"
+                          aria-required="true"
                         >
                           {field.value ? (
                             format(field.value, "PPP")
@@ -245,13 +248,13 @@ export function BookForm() {
               name="rating"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-sm">Rating</FormLabel>
+                  <FormLabel className="text-sm" htmlFor="rating">Rating</FormLabel>
                   <Select
                     onValueChange={(value) => field.onChange(parseInt(value))}
                     defaultValue={field.value?.toString()}
                   >
                     <FormControl>
-                      <SelectTrigger className="h-10 sm:h-9">
+                      <SelectTrigger className="h-10 sm:h-9" id="rating">
                         <SelectValue placeholder="Rate the book" />
                       </SelectTrigger>
                     </FormControl>
@@ -277,9 +280,9 @@ export function BookForm() {
               name="coverUrl"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-sm">Cover URL</FormLabel>
+                  <FormLabel className="text-sm" htmlFor="coverUrl">Cover URL</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter cover image URL" className="h-10 sm:h-9" {...field} />
+                    <Input id="coverUrl" placeholder="Enter cover image URL" className="h-10 sm:h-9" {...field} />
                   </FormControl>
                   <FormDescription className="text-xs sm:text-sm">
                     URL to the book's cover image (optional).
@@ -295,9 +298,10 @@ export function BookForm() {
               name="pageCount"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-sm">Page Count</FormLabel>
+                  <FormLabel className="text-sm" htmlFor="pageCount">Page Count</FormLabel>
                   <FormControl>
                     <Input
+                      id="pageCount"
                       type="number"
                       placeholder="Enter page count"
                       className="h-10 sm:h-9"
@@ -322,9 +326,10 @@ export function BookForm() {
               name="notes"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-sm">Notes</FormLabel>
+                  <FormLabel className="text-sm" htmlFor="notes">Notes</FormLabel>
                   <FormControl>
                     <Textarea
+                      id="notes"
                       placeholder="Enter your thoughts about the book"
                       className="min-h-[120px] text-sm"
                       {...field}
@@ -345,6 +350,7 @@ export function BookForm() {
                 onClick={() => form.reset()}
                 disabled={isSubmitting}
                 className="w-full sm:w-auto h-10 sm:h-9"
+                aria-label="Reset form"
               >
                 Reset Form
               </Button>
@@ -352,6 +358,7 @@ export function BookForm() {
                 type="submit"
                 disabled={isSubmitting || isSuccess}
                 className="w-full sm:w-auto h-10 sm:h-9"
+                aria-label={isSubmitting ? 'Adding book...' : isSuccess ? 'Book added successfully' : 'Add book'}
               >
                 {isSubmitting ? 'Adding...' : isSuccess ? 'Added Successfully!' : 'Add Book'}
                 {isSuccess && (
@@ -378,6 +385,7 @@ export function BookForm() {
           variant="ghost"
           onClick={() => router.push('/books')}
           className="w-full sm:w-auto h-10 sm:h-9"
+          aria-label="View all books"
         >
           View All Books
         </Button>

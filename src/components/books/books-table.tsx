@@ -17,6 +17,7 @@ import { Badge } from '@/components/ui/badge';
 import { Book } from '@/lib/types';
 import { Star, ArrowUpDown, ArrowUp, ArrowDown, Pencil, Eye, ChevronLeft, ChevronRight } from 'lucide-react';
 import { DeleteBookButton } from './delete-book-button';
+import { BookCover } from './book-cover';
 import {
   Pagination,
   PaginationContent,
@@ -87,13 +88,14 @@ export function BooksTable({ books, isLoading = false, onDelete }: BooksTablePro
     if (!rating) return 'Not rated';
 
     return (
-      <div className="flex items-center">
+      <div className="flex items-center" aria-label={`Rating: ${rating} out of 5 stars`}>
         {Array.from({ length: 5 }).map((_, i) => (
           <Star
             key={i}
             className={`h-4 w-4 ${
               i < rating ? 'text-yellow-500 fill-yellow-500' : 'text-gray-300'
             }`}
+            aria-hidden="true"
           />
         ))}
       </div>
@@ -205,7 +207,7 @@ export function BooksTable({ books, isLoading = false, onDelete }: BooksTablePro
   return (
     <div>
       {/* Desktop view - Full table */}
-      <div className="hidden md:block rounded-md border">
+      <section className="hidden md:block rounded-md border" aria-label="Books table view">
         <Table>
           <TableCaption>A list of your books.</TableCaption>
           <TableHeader>
@@ -264,17 +266,28 @@ export function BooksTable({ books, isLoading = false, onDelete }: BooksTablePro
             {currentBooks.map((book) => (
               <TableRow key={book.id}>
                 <TableCell className="font-medium">
-                  <div className="truncate max-w-[250px]" title={book.title}>
-                    {book.title}
+                  <div className="flex items-center gap-3">
+                    <BookCover
+                      coverUrl={book.coverUrl}
+                      title={book.title}
+                      author={book.author}
+                      genre={book.genre}
+                      width={40}
+                      height={60}
+                      className="hidden sm:block"
+                    />
+                    <div className="truncate max-w-[200px]" title={book.title} aria-label={`Title: ${book.title}`}>
+                      {book.title}
+                    </div>
                   </div>
                 </TableCell>
                 <TableCell>
-                  <div className="truncate max-w-[180px]" title={book.author}>
+                  <div className="truncate max-w-[180px]" title={book.author} aria-label={`Author: ${book.author}`}>
                     {book.author}
                   </div>
                 </TableCell>
-                <TableCell>{renderGenreBadge(book.genre)}</TableCell>
-                <TableCell>{formatDate(book.dateCompleted)}</TableCell>
+                <TableCell aria-label={`Genre: ${book.genre || 'Not specified'}`}>{renderGenreBadge(book.genre)}</TableCell>
+                <TableCell aria-label={`Date completed: ${formatDate(book.dateCompleted)}`}>{formatDate(book.dateCompleted)}</TableCell>
                 <TableCell>{renderRating(book.rating)}</TableCell>
                 <TableCell className="text-right">
                   <div className="flex justify-end gap-2">
@@ -283,8 +296,9 @@ export function BooksTable({ books, isLoading = false, onDelete }: BooksTablePro
                       size="icon"
                       onClick={() => router.push(`/books/${book.id}`)}
                       title="View details"
+                      aria-label={`View details for ${book.title}`}
                     >
-                      <Eye className="h-4 w-4" />
+                      <Eye className="h-4 w-4" aria-hidden="true" />
                     </Button>
 
                     <Button
@@ -292,8 +306,9 @@ export function BooksTable({ books, isLoading = false, onDelete }: BooksTablePro
                       size="icon"
                       onClick={() => router.push(`/books/edit/${book.id}`)}
                       title="Edit book"
+                      aria-label={`Edit ${book.title}`}
                     >
-                      <Pencil className="h-4 w-4" />
+                      <Pencil className="h-4 w-4" aria-hidden="true" />
                     </Button>
 
                     <DeleteBookButton
@@ -307,20 +322,30 @@ export function BooksTable({ books, isLoading = false, onDelete }: BooksTablePro
             ))}
           </TableBody>
         </Table>
-      </div>
+      </section>
 
       {/* Mobile view - Card-based layout */}
-      <div className="md:hidden space-y-4">
+      <section className="md:hidden space-y-4" aria-label="Books card view">
         {currentBooks.map((book) => (
           <div key={book.id} className="border rounded-lg p-4 shadow-sm">
             <div className="flex justify-between items-start mb-2">
-              <div>
-                <h3 className="font-medium truncate max-w-[200px]" title={book.title}>
-                  {book.title}
-                </h3>
-                <p className="text-sm text-muted-foreground truncate max-w-[200px]" title={book.author}>
-                  {book.author}
-                </p>
+              <div className="flex gap-3">
+                <BookCover
+                  coverUrl={book.coverUrl}
+                  title={book.title}
+                  author={book.author}
+                  genre={book.genre}
+                  width={50}
+                  height={75}
+                />
+                <div>
+                  <h3 className="font-medium truncate max-w-[200px]" title={book.title} aria-label={`Title: ${book.title}`}>
+                    {book.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground truncate max-w-[200px]" title={book.author} aria-label={`Author: ${book.author}`}>
+                    {book.author}
+                  </p>
+                </div>
               </div>
               <div className="flex gap-1">
                 <Button
@@ -328,16 +353,18 @@ export function BooksTable({ books, isLoading = false, onDelete }: BooksTablePro
                   size="icon"
                   className="h-10 w-10 sm:h-8 sm:w-8"
                   onClick={() => router.push(`/books/${book.id}`)}
+                  aria-label={`View details for ${book.title}`}
                 >
-                  <Eye className="h-4 w-4" />
+                  <Eye className="h-4 w-4" aria-hidden="true" />
                 </Button>
                 <Button
                   variant="ghost"
                   size="icon"
                   className="h-10 w-10 sm:h-8 sm:w-8"
                   onClick={() => router.push(`/books/edit/${book.id}`)}
+                  aria-label={`Edit ${book.title}`}
                 >
-                  <Pencil className="h-4 w-4" />
+                  <Pencil className="h-4 w-4" aria-hidden="true" />
                 </Button>
                 <DeleteBookButton
                   bookId={book.id}
@@ -363,11 +390,11 @@ export function BooksTable({ books, isLoading = false, onDelete }: BooksTablePro
             </div>
           </div>
         ))}
-      </div>
+      </section>
 
       {/* Pagination */}
       {!isLoading && books.length > 0 && (
-        <div className="mt-6">
+        <nav className="mt-6" aria-label="Pagination">
           <Pagination>
             <PaginationContent>
               <PaginationItem>
@@ -378,6 +405,8 @@ export function BooksTable({ books, isLoading = false, onDelete }: BooksTablePro
                     if (currentPage > 1) handlePageChange(currentPage - 1);
                   }}
                   className={currentPage === 1 ? 'pointer-events-none opacity-50' : ''}
+                  aria-label="Go to previous page"
+                  aria-disabled={currentPage === 1}
                 />
               </PaginationItem>
 
@@ -390,6 +419,7 @@ export function BooksTable({ books, isLoading = false, onDelete }: BooksTablePro
                       e.preventDefault();
                       handlePageChange(1);
                     }}
+                    aria-label="Go to first page"
                   >
                     1
                   </PaginationLink>
@@ -412,6 +442,7 @@ export function BooksTable({ books, isLoading = false, onDelete }: BooksTablePro
                       e.preventDefault();
                       handlePageChange(currentPage - 1);
                     }}
+                    aria-label={`Go to page ${currentPage - 1}`}
                   >
                     {currentPage - 1}
                   </PaginationLink>
@@ -424,6 +455,8 @@ export function BooksTable({ books, isLoading = false, onDelete }: BooksTablePro
                   href="#"
                   isActive
                   onClick={(e) => e.preventDefault()}
+                  aria-label={`Current page, page ${currentPage}`}
+                  aria-current="page"
                 >
                   {currentPage}
                 </PaginationLink>
@@ -438,6 +471,7 @@ export function BooksTable({ books, isLoading = false, onDelete }: BooksTablePro
                       e.preventDefault();
                       handlePageChange(currentPage + 1);
                     }}
+                    aria-label={`Go to page ${currentPage + 1}`}
                   >
                     {currentPage + 1}
                   </PaginationLink>
@@ -460,6 +494,7 @@ export function BooksTable({ books, isLoading = false, onDelete }: BooksTablePro
                       e.preventDefault();
                       handlePageChange(totalPages);
                     }}
+                    aria-label={`Go to last page, page ${totalPages}`}
                   >
                     {totalPages}
                   </PaginationLink>
@@ -474,15 +509,17 @@ export function BooksTable({ books, isLoading = false, onDelete }: BooksTablePro
                     if (currentPage < totalPages) handlePageChange(currentPage + 1);
                   }}
                   className={currentPage === totalPages ? 'pointer-events-none opacity-50' : ''}
+                  aria-label="Go to next page"
+                  aria-disabled={currentPage === totalPages}
                 />
               </PaginationItem>
             </PaginationContent>
           </Pagination>
 
-          <div className="mt-2 text-center text-sm text-muted-foreground">
+          <div className="mt-2 text-center text-sm text-muted-foreground" aria-live="polite" aria-atomic="true">
             Showing {startIndex + 1}-{Math.min(endIndex, books.length)} of {books.length} books
           </div>
-        </div>
+        </nav>
       )}
     </div>
   );

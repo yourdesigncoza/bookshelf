@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { getAllBooks } from '@/lib/book-storage';
-import { StatisticsDashboard } from '@/components/books/statistics-dashboard';
+import { DynamicStatisticsDashboard } from '@/lib/dynamic-import';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default async function StatisticsPage() {
   // Fetch books from the server
   const books = await getAllBooks();
-  
+
   return (
     <div className="container py-8">
       <div className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4">
@@ -25,8 +25,8 @@ export default async function StatisticsPage() {
           </Link>
         </Button>
       </div>
-      
-      <StatisticsDashboard books={books} />
+
+      <DynamicStatisticsDashboard books={books} />
     </div>
   );
 }
